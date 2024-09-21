@@ -33,9 +33,11 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull CardViewHolder holder, int position) {
+        Card card = cards.get(position);
         Glide.with(context)
-                .load(cards.get(position).getImgUrl())
-                .placeholder(R.drawable.image)  // Placeholder while image is loading
+                .load(card.getImgUrl())
+                .placeholder(R.drawable.image)
+                .override(card.getWidth(), card.getHeight())
                 .error(R.drawable.img_error)
                 .into(holder.imgView);
         holder.titleView.setText(cards.get(position).getTitle());
